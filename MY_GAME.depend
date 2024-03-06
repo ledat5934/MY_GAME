@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1709624759 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1709188513 c:\users\admin\documents\codeblockproject\my_game\defs.h
+
+1709187092 c:\users\admin\documents\codeblockproject\my_game\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
