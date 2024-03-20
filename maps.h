@@ -27,6 +27,7 @@ struct game_map
         images=_image;
         graphic=_graphic;
     }
+    game_map(){};
     void add(SDL_Texture* tex,int i,int j)
     {
     graphic.renderTexture(tex,i,j);
@@ -66,32 +67,37 @@ struct game_map
 
     void build_map()
     {
-        images.load_image();
         build_block(0,7*pile_size,SCREEN_HEIGHT-9*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
 images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,
 images.ground_right);
         build_block(7*pile_size-2,14*pile_size-2,SCREEN_HEIGHT-7*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
 images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
+        build_block(40*pile_size-10,44*pile_size-10,SCREEN_HEIGHT-11*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_left,
+images.ground_left_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
+        build_block(32*pile_size-8,40*pile_size-8,SCREEN_HEIGHT-9*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_left,
+images.ground_left_top,images.ground_inside,images.ground_top,images.ground_top,images.ground_inside,images.ground_inside,images.ground_right);
+        build_block(24*pile_size-6,32*pile_size-6,SCREEN_HEIGHT-7*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_left,
+images.ground_left_top,images.ground_inside,images.ground_top,images.ground_top,images.ground_inside,images.ground_inside,images.ground_right);
         build_block(14*pile_size-4,24*pile_size-4,SCREEN_HEIGHT-5*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
-images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
-        build_block(24*pile_size-6,32*pile_size-6,SCREEN_HEIGHT-7*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
-images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
-        build_block(32*pile_size-8,40*pile_size-8,SCREEN_HEIGHT-9*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
-images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
-        build_block(40*pile_size-10,44*pile_size-10,SCREEN_HEIGHT-11*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
-images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
-        build_block(40*pile_size-10,44*pile_size-10,SCREEN_HEIGHT-11*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
-images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
+images.ground_top,images.ground_inside,images.ground_top,images.ground_top,images.ground_inside,images.ground_inside,images.ground_right);
     for(int i=SCREEN_HEIGHT-9*pile_size;i<=SCREEN_HEIGHT-pile_size;i+=pile_size)
-{
-    add(images.waterfall,35.5*pile_size-6,i);
-}
+       {
+           add(images.waterfall,35.5*pile_size-6,i);
+       }
     for(int i=SCREEN_HEIGHT-11*pile_size;i<=SCREEN_HEIGHT-pile_size;i+=pile_size)
-{
-    add(images.waterfall,41.5*pile_size-10,i);
-}
-     build_block(0,map_width,SCREEN_HEIGHT-3*pile_size,SCREEN_HEIGHT,images.underwater,images.underwater,images.water,images.underwater,images.water,
+       {
+           add(images.waterfall,41.5*pile_size-10,i);
+       }
+    build_block(0,6*pile_size,SCREEN_HEIGHT-6*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_inside,
+images.ground_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,
+images.ground_right);
+    build_block(25*pile_size-6,30*pile_size-6,SCREEN_HEIGHT-5*pile_size,SCREEN_HEIGHT,images.ground_inside,images.ground_left,
+images.ground_left_top,images.ground_inside,images.ground_top,images.ground_right_top,images.ground_right,images.ground_inside,images.ground_right);
+    build_block(0,map_width,SCREEN_HEIGHT-3*pile_size,SCREEN_HEIGHT,images.underwater,images.underwater,images.water,images.underwater,images.water,
                  images.water,images.underwater,images.underwater,images.underwater);
+    add(images.arrow,2*pile_size,SCREEN_HEIGHT-10*pile_size);
+    add(images.spike,5*pile_size,SCREEN_HEIGHT-10*pile_size);
+
     }
 
 };

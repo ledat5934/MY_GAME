@@ -5,6 +5,8 @@
 #include "graphics.h"
 #include "game_image.h"
 #include "maps.h"
+#include "logic.h"
+#include "character.h"
 using namespace std;
 void waitUntilKeyPressed() {
     SDL_Event e;
@@ -20,38 +22,29 @@ int main(int argc,char**argv)
     Graphics graphic;
     graphic.init();
     Image images(graphic);
-     game_map game_maps(images,graphic);
-     game_maps.build_map();
-     int cam=0;
-     SDL_Event e;
-     while(true)
-    {
-        while(SDL_PollEvent(&e)!=0)
-        {
-            if (e.type == SDL_QUIT) {
-                graphic.quit();
-                return 0;}
-            else if (e.type == SDL_KEYDOWN) {
-                switch (e.key.keysym.sym) {
-                    case SDLK_LEFT:
-                        if(cam>=18){cam -= 18;
-                        break;}
-                    case SDLK_RIGHT:
-                        if(cam<=map_width-SCREEN_WIDTH){cam += 18;
-                        break;}
-            }}
-        }
-        {SDL_RenderClear(graphic.renderer);
-        for(const object& o:v)
-        {
-            if(o.x<cam+SCREEN_WIDTH)
-            {
-                graphic.renderTexture(o.texture,o.x-cam,o.y);
-            }
-        }
+    images.load();
+    graphic.prepareScene(images.background);
+    game_map maps(images,graphic);
+    maps.build_map();
+    Mouse mouse(pile_size, SCREEN_HEIGHT-11*pile_size+12);
+    characters charact(graphic,mouse,images);
+    bool quit=false;
+    graphic.renderTexture(images.character,mouse.x,mouse.y);
     graphic.presentScene();
-    SDL_Delay(100);
+    SDL_Event event;
+    while(!quit)
+    {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) quit = true;
         }
+        if(charact.check_move())
+        {
+            charact.charact_move();
+            charact.present_scene();
+            charact.update_status();
+            charact.present_scene();
+        }
+    SDL_Delay(50);
     }
     waitUntilKeyPressed();
 }

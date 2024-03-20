@@ -1,15 +1,43 @@
 # depslib dependency file v1.0
-1709624759 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
+1710917325 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"graphics.h"
+	"game_image.h"
+	"maps.h"
+	"logic.h"
+	"character.h"
 
-1709188513 c:\users\admin\documents\codeblockproject\my_game\defs.h
+1709710272 c:\users\admin\documents\codeblockproject\my_game\defs.h
 
-1709187092 c:\users\admin\documents\codeblockproject\my_game\graphics.h
+1710777592 c:\users\admin\documents\codeblockproject\my_game\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
+
+1710916890 c:\users\admin\documents\codeblockproject\my_game\game_image.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1710905653 c:\users\admin\documents\codeblockproject\my_game\maps.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+	"game_image.h"
+
+1710905738 c:\users\admin\documents\codeblockproject\my_game\logic.h
+
+1710917800 c:\users\admin\documents\codeblockproject\my_game\character.h
+	<bits/stdc++.h>
+	"defs.h"
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+	"maps.h"
+	"game_image.h"
 
