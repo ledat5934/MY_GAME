@@ -24,12 +24,15 @@ int main(int argc,char**argv)
     Image images(graphic);
     images.load();
     graphic.prepareScene(images.background);
-    game_map maps(images,graphic);
+    game_map maps(&images,&graphic);
     maps.build_map();
-    Mouse mouse(pile_size, SCREEN_HEIGHT-11*pile_size+12);
-    characters charact(graphic,mouse,images);
+    cout<<can_stand.size()<<endl;
+    Sprite sprite;
+    SDL_Texture* characterss=graphic.loadTexture("frame_char_.png");
+    sprite.init(characterss,frames,char_frame);
+    Character character(&sprite, &graphic, &images);
     bool quit=false;
-    graphic.renderTexture(images.character,mouse.x,mouse.y);
+    graphic.render(character.x,character.y,sprite);
     graphic.presentScene();
     SDL_Event event;
     while(!quit)
@@ -37,14 +40,9 @@ int main(int argc,char**argv)
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) quit = true;
         }
-        if(charact.check_move())
-        {
-            charact.charact_move();
-            charact.present_scene();
-            charact.update_status();
-            charact.present_scene();
-        }
-    SDL_Delay(50);
+        character.check_move();
+
+    SDL_Delay(12);
     }
     waitUntilKeyPressed();
 }

@@ -40,7 +40,7 @@ struct Image
     arrow=graphics.loadTexture("tile_0088.png");
     spike=graphics.loadTexture("tile_0068.png");
     background=graphics.loadTexture("background2.png");
-    character=graphics.loadTexture("tile_0018.png");
+    character=graphics.loadTexture("char_01.png");
     }
 };
 
