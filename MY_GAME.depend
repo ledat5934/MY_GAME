@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1711984700 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
+1714014286 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -9,21 +9,23 @@
 	"maps.h"
 	"logic.h"
 	"character.h"
+	"do_logic.h"
 
-1711965211 c:\users\admin\documents\codeblockproject\my_game\defs.h
+1714014477 c:\users\admin\documents\codeblockproject\my_game\defs.h
 
-1711693731 c:\users\admin\documents\codeblockproject\my_game\graphics.h
+1712368301 c:\users\admin\documents\codeblockproject\my_game\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
+	<SDL_ttf.h>
 
-1711035797 c:\users\admin\documents\codeblockproject\my_game\game_image.h
+1713369125 c:\users\admin\documents\codeblockproject\my_game\game_image.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"graphics.h"
 
-1711976521 c:\users\admin\documents\codeblockproject\my_game\maps.h
+1714049174 c:\users\admin\documents\codeblockproject\my_game\maps.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
@@ -32,12 +34,18 @@
 
 1710905738 c:\users\admin\documents\codeblockproject\my_game\logic.h
 
-1711976106 c:\users\admin\documents\codeblockproject\my_game\character.h
+1714014587 c:\users\admin\documents\codeblockproject\my_game\character.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	"defs.h"
 	"graphics.h"
 	"maps.h"
 	"game_image.h"
+	"save_point.h"
+
+1712757491 c:\users\admin\documents\codeblockproject\my_game\do_logic.h
+
+1712820057 c:\users\admin\documents\codeblockproject\my_game\save_point.h
 

@@ -7,16 +7,8 @@
 #include "maps.h"
 #include "logic.h"
 #include "character.h"
+#include "do_logic.h"
 using namespace std;
-void waitUntilKeyPressed() {
-    SDL_Event e;
-    while (true) {
-        if (SDL_PollEvent(&e) != 0 &&
-            (e.type == SDL_KEYDOWN || e.type == SDL_QUIT))
-            return;
-        SDL_Delay(100);
-    }
-}
 int main(int argc,char**argv)
 {
     Graphics graphic;
@@ -26,11 +18,10 @@ int main(int argc,char**argv)
     graphic.prepareScene(images.background);
     game_map maps(&images,&graphic);
     maps.build_map();
-    cout<<can_stand.size()<<endl;
     Sprite sprite;
     SDL_Texture* characterss=graphic.loadTexture("frame_char_.png");
     sprite.init(characterss,frames,char_frame);
-    Character character(&sprite, &graphic, &images);
+    Character character(&sprite, &maps);
     bool quit=false;
     graphic.render(character.x,character.y,sprite);
     graphic.presentScene();
@@ -40,9 +31,8 @@ int main(int argc,char**argv)
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) quit = true;
         }
-        character.check_move();
-
-    SDL_Delay(12);
+        character.move();
+    SDL_Delay(1);
     }
     waitUntilKeyPressed();
 }

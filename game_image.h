@@ -4,7 +4,6 @@
 #include<SDL_image.h>
 #include "defs.h"
 #include "graphics.h"
-
 struct Image
 {
     Graphics graphics;
@@ -26,6 +25,8 @@ struct Image
     SDL_Texture* spike;
     SDL_Texture* background;
     SDL_Texture* character;
+    SDL_Texture* cloud;
+    SDL_Texture* thunder;
     void load()
     {
     ground_left_top=graphics.loadTexture("tile_0021.png");
@@ -38,9 +39,11 @@ struct Image
     water=graphics.loadTexture("tile_underwater.png");
     ground_left=graphics.loadTexture("tile_0121.png");
     arrow=graphics.loadTexture("tile_0088.png");
-    spike=graphics.loadTexture("tile_0068.png");
+    spike=graphics.loadTexture("tile_0069.png");
     background=graphics.loadTexture("background2.png");
     character=graphics.loadTexture("char_01.png");
+    cloud=graphics.loadTexture("cloud.png");
+    thunder=graphics.loadTexture("thunder.png");
     }
 };
 
