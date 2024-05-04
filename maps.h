@@ -6,9 +6,9 @@
 #include "defs.h"
 #include "graphics.h"
 #include "game_image.h"
+#include "minimap.h"
+#include "trap.h"
 using namespace std;
-
-set<pair<int,int>>can_stand;
 struct object
 {
     SDL_Texture* texture;
@@ -17,46 +17,21 @@ struct object
     {
         texture=tex1;x=x1;y=y1;
     }
-//        bool operator==(const object& other)
-//    {
-//        return this->x == other.x && this->y == other.y ;
-//    }
-};
-struct Trap
-{
-    int x,y,min_x,max_x;
-    int speed=2;
-    Trap(){};
-    Trap(int _x,int _y,int _min_x)
-    {
-        x=max_x=_x;
-        min_x=_min_x;
-        y=_y;
-    }
-    void update()
-{
-    x += speed;
-    if (x < min_x || x > max_x)
-    {
-        speed = -speed;
-    }
-}
 };
 vector<object>v;
-set<pair<int,int>>danger;
 struct game_map
 {
     Image *images;
     Graphics *graphic;
     int random;
-    Trap moved_spike;
-    game_map(Image *_image, Graphics *_graphic)
+    Trap* moved_spike;
+    Minimap *mini;
+    game_map(Image *_image, Graphics *_graphic,Minimap *_mini)
     {
         images=_image;
         graphic=_graphic;
-        moved_spike.x=moved_spike.max_x=1008;
-        moved_spike.min_x=18*pile_size;
-        moved_spike.y=16*pile_size;
+        mini=_mini;
+        moved_spike=&mini->moved_spike;
     }
     game_map(){};
     void add(SDL_Texture* tex,int i,int j)
@@ -66,7 +41,7 @@ struct game_map
     v.push_back(o);
     if(tex!=images->spike)
     {can_stand.insert({j,i});}
-    if(tex==images->spike||tex==images->water)
+    if(tex==images->spike||tex==images->water||tex==images->underwater)
     {
         danger.insert({j,i});
     }
@@ -146,7 +121,7 @@ images->ground_left_top,images->ground_inside,images->ground_top,images->ground_
     {
         add(images->ground_top,i,17*pile_size);
     }
-    add(images->spike,468,468);
+    add(images->spike,504,468);
     add(images->ground_top,1008+4*pile_size,17*pile_size);
     add(images->ground_top,1008+5*pile_size,17*pile_size);
     add(images->spike,25*pile_size,16*pile_size);

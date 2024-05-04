@@ -27,6 +27,7 @@ struct Image
     SDL_Texture* character;
     SDL_Texture* cloud;
     SDL_Texture* thunder;
+    SDL_Texture* menu;
     void load()
     {
     ground_left_top=graphics.loadTexture("tile_0021.png");
@@ -44,6 +45,7 @@ struct Image
     character=graphics.loadTexture("char_01.png");
     cloud=graphics.loadTexture("cloud.png");
     thunder=graphics.loadTexture("thunder.png");
+    menu=graphics.loadTexture("menu.png");
     }
 };
 

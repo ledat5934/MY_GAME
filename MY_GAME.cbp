@@ -36,9 +36,12 @@
 		<Unit filename="defs.h" />
 		<Unit filename="game_image.h" />
 		<Unit filename="graphics.h" />
+		<Unit filename="logic_game.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="maps.h" />
-		<Unit filename="save_point.h" />
+		<Unit filename="menu.h" />
+		<Unit filename="minimap.h" />
+		<Unit filename="trap.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -1,12 +1,17 @@
 #ifndef _DEFS__H
 #define _DEFS__H
 
+#include<bits/stdc++.h>
+using namespace std;
 const int SCREEN_WIDTH = 804;
 const int SCREEN_HEIGHT = 594+18;
 const char* WINDOW_TITLE = "Hello World!";
 const int pile_size=18;
 const int map_width=1008+18*30;
 const int gravity=10;
+set<pair<int,int>>can_stand;
+set<pair<int,int>>danger;
+SDL_Event event;
 const int char_frame[3][4] = {
     {  0, 0, 18, 18},
     { 21, 0, 18, 18},
