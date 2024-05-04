@@ -28,6 +28,7 @@ struct logic_game
     int random_number=0;
     bool is_playing=false;
     Mix_Music* background_music;
+    Mix_Chunk* die;
     Uint32 game_start;
     vector<int>clouded={20*pile_size,29*pile_size,40*pile_size};
     logic_game(Character* _character,Sprite *_sprite, game_map *_maps,game_menu* _menu)
@@ -44,6 +45,7 @@ struct logic_game
         background_music=graphic->loadMusic("background_music.wav");
         game_start=SDL_GetTicks();
         graphic->play(background_music);
+        die=Mix_LoadWAV("die.wav");
     }
 //    void game_init()
 //    {
@@ -200,6 +202,7 @@ struct logic_game
     {
         is_playing=false;
         Mix_PauseMusic();
+        graphic->play_jump(die);
         waitUntilKeyPressed();
         reset();
     }
@@ -225,6 +228,7 @@ struct logic_game
             }
             if(is_playing)
                 {
+                    cout<<character->x+character->cam<<" "<<character->y<<endl;
                     maps->moved_spike->update();
                     character->move_up=character->can_jump=true;
                     character->check_move();
