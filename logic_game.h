@@ -27,6 +27,7 @@ struct logic_game
     SDL_Texture* helloText;
     int random_number=0;
     bool is_playing=false;
+    bool is_pausing=false;
     Mix_Music* background_music;
     Mix_Chunk* die;
     Uint32 game_start;
@@ -47,12 +48,6 @@ struct logic_game
         graphic->play(background_music);
         die=Mix_LoadWAV("die.wav");
     }
-//    void game_init()
-//    {
-//        maps->build_map();
-//        graphic->render(character->x,character->y,sprite);
-//        graphic->presentScene();
-//    }
     void present()
     {
         sprite->tick();
@@ -225,32 +220,43 @@ struct logic_game
                     is_playing=true;
                     maps->build_map();
                 }
+                if(is_pausing)
+                {
+                    menu->pause_loop();
+                }
             }
             if(is_playing)
+            {
+                cout<<character->x+character->cam<<" "<<character->y<<endl;
+                maps->moved_spike->update();
+                character->move_up=character->can_jump=true;
+                character->check_move();
+                handle_dangerouse();
+                if(character->status_live==false)
                 {
-                    cout<<character->x+character->cam<<" "<<character->y<<endl;
-                    maps->moved_spike->update();
-                    character->move_up=character->can_jump=true;
-                    character->check_move();
-                    handle_dangerouse();
-                    if(character->status_live==false)
-                    {
-                        handle_die();
-                        present();
-                    }
-                    character->check_can_stand();
-                    if(character->can_stands)
-                    {
-                        character->count_jump=0;
-                    }
-                    else
-                    {
-                        character->can_jump=false;
-                    }
+                    handle_die();
+                    present();
+                }
+                character->check_can_stand();
+                if(character->can_stands)
+                {
+                    character->count_jump=0;
+                }
+                else
+                {
+                    character->can_jump=false;
+                }
                 character->move();
                 present();
-                }
-            SDL_Delay(1);
+            }
+            if(character->pause_game)
+            {
+                is_playing=false;
+                is_pausing=true;
+                character->pause_game=false;
+                menu->pause_option=0;
+            }
+            SDL_Delay(10);
         }
     }
 };

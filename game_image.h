@@ -47,7 +47,7 @@ struct Image
     cloud=graphics.loadTexture("cloud.png");
     thunder=graphics.loadTexture("thunder.png");
     menu=graphics.loadTexture("menu.png");
-    sign=graphics.loadTexture("tile0086.png");
+    sign=graphics.loadTexture("tile_0086.png");
     }
 };
 

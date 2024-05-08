@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1714712558 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
+1715153982 source:c:\users\admin\documents\codeblockproject\my_game\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -13,7 +13,7 @@
 	"minimap.h"
 	"menu.h"
 
-1714615649 c:\users\admin\documents\codeblockproject\my_game\defs.h
+1715154402 c:\users\admin\documents\codeblockproject\my_game\defs.h
 	<bits/stdc++.h>
 
 1714322032 c:\users\admin\documents\codeblockproject\my_game\graphics.h
@@ -23,7 +23,7 @@
 	<SDL_ttf.h>
 	<SDL_mixer.h>
 
-1714812608 c:\users\admin\documents\codeblockproject\my_game\game_image.h
+1714987397 c:\users\admin\documents\codeblockproject\my_game\game_image.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
@@ -40,7 +40,7 @@
 
 1710905738 c:\users\admin\documents\codeblockproject\my_game\logic.h
 
-1714633859 c:\users\admin\documents\codeblockproject\my_game\character.h
+1715152791 c:\users\admin\documents\codeblockproject\my_game\character.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -68,7 +68,7 @@
 
 1714446482 c:\users\admin\documents\codeblockproject\my_game\trap.h
 
-1714812608 c:\users\admin\documents\codeblockproject\my_game\logic_game.h
+1715153511 c:\users\admin\documents\codeblockproject\my_game\logic_game.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -81,7 +81,7 @@
 	"character.h"
 	"menu.h"
 
-1714713406 c:\users\admin\documents\codeblockproject\my_game\menu.h
+1715157311 c:\users\admin\documents\codeblockproject\my_game\menu.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>

@@ -26,6 +26,7 @@ struct Character{
     int count_jump=0;
     bool move_left=false,move_right=false,move_up=false;
     int cam=0;
+    bool pause_game=false;
     int current_jump_high=0;
     bool can_move_right, can_move_left,can_stands;
     bool status_live=true;
@@ -136,7 +137,7 @@ struct Character{
             if(count_jump==0&&can_jump==true)
             {
                 graphic->play_jump(jump);
-                dy-=6;
+                dy=-dy+1;
                 count_jump=1;
                 move_up=true;
             }
@@ -150,6 +151,10 @@ struct Character{
                 current_jump_high=0;
                 dy=velocity;
             }
+        }
+        if(currentKeyStates[SDL_SCANCODE_P])
+        {
+            pause_game=true;
         }
     }
 };
