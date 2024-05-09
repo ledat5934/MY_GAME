@@ -22,10 +22,9 @@ int main(int argc,char**argv)
     SDL_Texture* characterss=graphic.loadTexture("frame_char_.png");
     sprite.init(characterss,frames,char_frame);
     Character character(&graphic);
-    game_menu menu(&images);
+    game_menu menu(&images,&character);
     Minimap mini(&graphic,&character);
     game_map maps(&images,&graphic,&mini);
-    bool quit=false;
     logic_game logic(&character,&sprite,&maps,&menu);
     logic.do_logic();
     waitUntilKeyPressed();

@@ -29,6 +29,10 @@ struct Image
     SDL_Texture* thunder;
     SDL_Texture* menu;
     SDL_Texture* sign;
+    SDL_Texture* door;
+    SDL_Texture* explosion_sprite;
+    SDL_Texture* spring;
+    SDL_Texture* spring2;
     void load()
     {
     ground_left_top=graphics.loadTexture("tile_0021.png");
@@ -48,6 +52,10 @@ struct Image
     thunder=graphics.loadTexture("thunder.png");
     menu=graphics.loadTexture("menu.png");
     sign=graphics.loadTexture("tile_0086.png");
+    door=graphics.loadTexture("tile_0111.png");
+    explosion_sprite=graphics.loadTexture("bomb.jpg");
+    spring=graphics.loadTexture("tile_0108.png");
+    spring2=graphics.loadTexture("tile_0107.png");
     }
 };
 

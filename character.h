@@ -22,11 +22,15 @@ void waitUntilKeyPressed() {
 struct Character{
     int x=6;
     int y=432;
+    int count_die=0;
     int dy=velocity;
+    int level=1;
     int count_jump=0;
     bool move_left=false,move_right=false,move_up=false;
     int cam=0;
     bool pause_game=false;
+    int jump_high=max_jump_high;
+    bool real_map=false;
     int current_jump_high=0;
     bool can_move_right, can_move_left,can_stands;
     bool status_live=true;
@@ -74,18 +78,16 @@ struct Character{
     }
     void check_can_stand()
     {
-        pair<int,int> p={y+18,x+cam-17};
-        auto it=can_stand.lower_bound(p);
-        if(it==can_stand.end()){can_stands=false;return;}
-        if((*it).first==y+18)
-        {
-            if((*it).second-x-cam<18&&(*it).second>=x+cam-17)
-                {
-                    can_stands= true;
-                    return;
-                }
-        }
         can_stands=false;
+        for(auto &ob:can_stand)
+        {
+            if(y+18>=ob.first&&y<=ob.first&&x+cam>ob.second-18&&x+cam<ob.second+18)
+            {
+                can_stands=true;
+                y=ob.first-18;
+                break;
+            }
+        }
     }
     void move1()
     {
@@ -122,7 +124,7 @@ struct Character{
             move_right=true;
             if(can_move_right)
             {
-                if(x<SCREEN_WIDTH/2)
+                if(x<SCREEN_WIDTH/2||x+cam>=map_width-SCREEN_WIDTH/2)
                 {
                     move1();
                 }
@@ -150,6 +152,7 @@ struct Character{
             {
                 current_jump_high=0;
                 dy=velocity;
+                jump_high=max_jump_high;
             }
         }
         if(currentKeyStates[SDL_SCANCODE_P])

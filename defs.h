@@ -16,10 +16,14 @@ const int char_frame[3][4] = {
     {  0, 0, 18, 18},
     { 21, 0, 18, 18},
     {42,0, 18, 18}};
+vector<pair<int,int>>top_score;
+vector<pair<pair<int,int>,string>>signs;
+vector<pair<int,int>> bomb;
+vector<pair<int,int>>spike;
 const int frames = sizeof(char_frame)/sizeof(int)/4;
 const int speed=3;
-const int velocity=3;
-const int jump_high=48;
+const int velocity=4;
+const int max_jump_high=48;
 const int start_x=pile_size;
 const int start_y=SCREEN_HEIGHT-15*pile_size;
 #endif
