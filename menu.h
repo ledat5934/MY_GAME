@@ -48,16 +48,16 @@ int mod(int a,int b)
     }
     return a%b;
 }
-void save(int x,int y,int death)
+void save(int x,int y,int cam,int death)
 {
     ofstream file("savepoint.txt");
-    file<<x<<"\n"<<y<<"\n"<<death;
+    file<<x<<"\n"<<y<<"\n"<<"\n"<<cam<<"\n"<<death;
     file.close();
 }
-void load(int &x,int &y,int &death)
+void load(int &x,int &y,int &cam,int &death)
 {
     ifstream file("savepoint.txt");
-    file>>x>>y>>death;
+    file>>x>>y>>cam>>death;
     file.close();
 }
 struct game_menu
@@ -100,16 +100,27 @@ struct game_menu
     }
     void present_high_score()
     {
-        SDL_Rect table;
-        table.x=150;
-        table.y=140;
-        table.w=500;
-        table.h=400;
-        SDL_SetRenderDrawColor(graphic->renderer,44,127,200,255);
-        SDL_RenderFillRect(graphic->renderer,&table);
-        for(int i=0;i<10&&i<(int)top_score.size();i++)
+        bool presented=true;
+        while(presented)
         {
-            graphic->renderTexture(graphic->renderText(("Level "+to_string(top_score[i].first)+" death "+to_string(top_score[i].second)).c_str(),font,color),44,127+20*i);
+            SDL_Rect table;
+            table.x=150;
+            table.y=140;
+            table.w=500;
+            table.h=400;
+            SDL_SetRenderDrawColor(graphic->renderer,152,251,152,1);
+            SDL_RenderFillRect(graphic->renderer,&table);
+            for(int i=0;i<10&&i<(int)top_score.size();i++)
+            {
+                graphic->renderTexture(graphic->renderText(("Level "+to_string(top_score[i].first)+" death "+to_string(top_score[i].second)).c_str(),font,color),150,147+28*i);
+            }
+            graphic->presentScene();
+            SDL_PollEvent(&event);
+            const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+            if(currentKeyStates[SDL_SCANCODE_BACKSPACE])
+            {
+                presented=false;
+            }
         }
     }
     void draw_choose(int x,int y)
@@ -180,7 +191,7 @@ struct game_menu
             }
             else
             {
-                save(character->x,character->y,character->count_die);
+                save(character->x,character->y,character->cam,character->count_die);
                 graphic->quit();
                 exit(0);
             }
@@ -211,7 +222,12 @@ struct game_menu
                 {
                     menu_just_close=true;
                     menu_is_playing=false;
-                    load(character->x,character->y,character->count_die);
+                    load(character->x,character->y,character->cam,character->count_die);
+                }
+                else if(option==2)
+                {
+                    load_high_score();
+                    present_high_score();
                 }
             }
             present_menu();

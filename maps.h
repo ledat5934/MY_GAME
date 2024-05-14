@@ -47,7 +47,7 @@ struct game_map
             object o(tex,i,j);
             v.push_back(o);
         }
-        if(tex!=images->spike&&tex!=images->door&&tex!=images->sign)
+        if(tex!=images->spike&&tex!=images->door&&tex!=images->sign&&tex!=images->water&&tex!=images->underwater)
             {can_stand.insert({j,i});}
         if(tex==images->spike||tex==images->water||tex==images->underwater)
         {
@@ -138,9 +138,13 @@ images->ground_left_top,images->ground_inside,images->ground_top,images->ground_
     add(images->spike,1116,396);
     signs.push_back({{1026,396},"Find life in death"});
     add(images->door,1386,396);
-    for(int i=18*pile_size;i<=1008;i++)
+    for(int i=18*pile_size;i<=1008;i+=pile_size)
     {
         add(images->ground_top,i,17*pile_size);
+    }
+    for(int i=18*pile_size;i<map_width;i+=pile_size)
+    {
+        invisible_spike.push_back({i,18*pile_size});
     }
     add(images->spike,504,468);
     add(images->ground_top,1008+4*pile_size,17*pile_size);

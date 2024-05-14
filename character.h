@@ -35,6 +35,7 @@ struct Character{
     bool can_move_right, can_move_left,can_stands;
     bool status_live=true;
     bool can_jump=true;
+    int random_trap;
     Mix_Chunk* jump=Mix_LoadWAV("jump.wav");
     Graphics* graphic;
     Character(Graphics* _graphic){graphic=_graphic;}
@@ -122,6 +123,10 @@ struct Character{
         if (currentKeyStates[SDL_SCANCODE_RIGHT])
         {
             move_right=true;
+            if(random_trap==0)
+            {
+                spike[0].first-=velocity;
+            }
             if(can_move_right)
             {
                 if(x<SCREEN_WIDTH/2||x+cam>=map_width-SCREEN_WIDTH/2)
@@ -136,6 +141,11 @@ struct Character{
         }
         if (currentKeyStates[SDL_SCANCODE_UP])
         {
+            if(random_trap==1)
+            {
+                spike[0].second-=24;
+                random_trap=2;
+            }
             if(count_jump==0&&can_jump==true)
             {
                 graphic->play_jump(jump);

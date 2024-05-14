@@ -75,6 +75,13 @@ struct Minimap
         {
             draw_danger(d.first,d.second);
         }
+        if(character->status_live==false)
+        {
+            for(auto &d:invisible_spike)
+            {
+                draw_danger(d.first,d.second);
+            }
+        }
         for(auto &obj:can_stand)
         {
             draw_safe(obj.second,obj.first);

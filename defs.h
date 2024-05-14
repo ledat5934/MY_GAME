@@ -20,6 +20,7 @@ vector<pair<int,int>>top_score;
 vector<pair<pair<int,int>,string>>signs;
 vector<pair<int,int>> bomb;
 vector<pair<int,int>>spike;
+vector<pair<int,int>>invisible_spike;
 const int frames = sizeof(char_frame)/sizeof(int)/4;
 const int speed=3;
 const int velocity=4;

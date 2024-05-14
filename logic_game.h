@@ -20,7 +20,6 @@ struct logic_game
     Sprite *sprite; Graphics *graphic; Image *images;game_map *maps;
     bool trap_started[4];
     bool trap_ended[4];
-    int bomb_first,bomb_second;
     game_menu *menu;
     int vv=27*pile_size;
     TTF_Font* font;
@@ -61,6 +60,23 @@ struct logic_game
         {
             graphic->renderTexture(images->thunder,clouded[random_number]-character->cam+12,7*pile_size);
         }
+        if(character->status_live==false)
+        {
+            for(auto &objects:invisible_spike)
+            {
+                if(objects.first>=character->cam-18 && objects.second <= SCREEN_WIDTH + character->cam)
+                {
+                    graphic->renderTexture(images->spike,objects.first-character->cam,objects.second);
+                }
+            }
+        }
+        for(auto &sign:signs)
+        {
+            if(sign.first.first>=character->cam-18&&sign.first.first<SCREEN_WIDTH+character->cam)
+            {
+                graphic->renderTexture(images->sign,sign.first.first-character->cam,sign.first.second);
+            }
+        }
         for(auto &objects:spike)
         {
             if(objects.first>=character->cam-18 && objects.second <= SCREEN_WIDTH + character->cam)
@@ -75,13 +91,6 @@ struct logic_game
                 graphic->renderTexture(objects.texture, objects.x - character->cam, objects.y);
             }
         }
-        for(auto &sign:signs)
-        {
-            if(sign.first.first>=character->cam-18&&sign.first.first<SCREEN_WIDTH+character->cam)
-            {
-                graphic->renderTexture(images->sign,sign.first.first-character->cam,sign.first.second);
-            }
-        }
         Sprite* mySprite=sprite;
         graphic->render(character->x,character->y,*mySprite);
         string death_count="DEATHS: "+to_string(character->count_die);
@@ -90,8 +99,7 @@ struct logic_game
         graphic->renderTexture(images->spike,maps->moved_spike->x-character->cam,maps->moved_spike->y);
         if(exploded)
         {
-            cout<<"success";
-            graphic->renderTexture(images->explosion_sprite,bomb_first-character->cam,bomb_second);
+            graphic->renderTexture(images->explosion_sprite,character->x,character->y);
             exploded=false;
         }
         render_clue();
@@ -110,6 +118,20 @@ struct logic_game
     bool check_danger()
 	{
 		for(auto &dangers:spike)
+        {
+            if(dangers.second>=character->y-18&&dangers.second<=character->y+18)
+            {
+                if(character->x+character->cam+18>=dangers.first&&character->x+character->cam<=dangers.first)
+                {
+                    return true;
+                }
+                if(character->x+character->cam<=dangers.first+18&&character->x+character->cam>=dangers.first)
+                {
+                    return true;
+                }
+            }
+        }
+        for(auto &dangers:invisible_spike)
         {
             if(dangers.second>=character->y-18&&dangers.second<=character->y+18)
             {
@@ -152,12 +174,15 @@ struct logic_game
         if(character->x+character->cam==1386&&character->y==396&&character->real_map)
         {
             load_high_score();
-            update_high_score();
+            update_high_score(character->level,character->count_die);
             save_high_score();
+            menu->menu_is_playing=true;
+            reset();
+            is_playing=false;
         }
         if(random_number<=2)
         {
-            if(character->x+character->cam>clouded[random_number]+12-pile_size&&character->y>=7*pile_size&&character->y<=20*pile_size&&character->x+character->cam<clouded[random_number]+12+pile_size)
+            if(character->x+character->cam>clouded[random_number]+12-pile_size&&character->y>=7*pile_size&&character->y<=288&&character->x+character->cam<clouded[random_number]+12+pile_size)
             {
                 character->status_live=false;
                 present();
@@ -208,14 +233,13 @@ struct logic_game
         {
             character->dy=-character->dy;
             character->current_jump_high=0;
-            character->jump_high=3*max_jump_high+36;
+            character->jump_high=3*max_jump_high+30;
             if(character->x+character->cam>=1206&&character->x+character->cam<1296)
             {
                 trap_started[3]=true;
-                character->jump_high=4*max_jump_high;
             }
         }
-        if(character->y<396&&character->x+character->cam>=1206)
+        if(character->y<396&&character->x+character->cam>=1248)
         {
             if(trap_started[3])
             {
@@ -262,8 +286,6 @@ struct logic_game
             {
                 exploded=true;
                 character->status_live=false;
-                bomb_first=bombs.first;
-                bomb_second=bombs.second;
                 break;
             }
         }
@@ -273,6 +295,7 @@ struct logic_game
         Mix_ResumeMusic();
         Mix_RewindMusic();
         is_playing=true;
+        character->random_trap=rand()%2;
         waterfall_traped=false;
         character->jump_high=max_jump_high;
         character->dy=velocity;
@@ -315,6 +338,7 @@ struct logic_game
                     menu->menu_just_close=false;
                     is_playing=true;
                     maps->build_map();
+                    character->random_trap=rand()%2;
                 }
                 if(is_pausing)
                 {
@@ -329,6 +353,7 @@ struct logic_game
                 character->check_move();
                 character->check_can_stand();
                 handle_dangerouse();
+                if(character->status_live){present();}
                 if(character->status_live==false)
                 {
                     present();
@@ -347,7 +372,6 @@ struct logic_game
                     character->can_jump=false;
                 }
                 character->move();
-                present();
             }
             if(character->pause_game)
             {
