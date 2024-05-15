@@ -57,6 +57,7 @@ struct Image
     spring=graphics.loadTexture("tile_0108.png");
     spring2=graphics.loadTexture("tile_0107.png");
     }
+
 };
 
 #endif // _GAME_IMAGE__

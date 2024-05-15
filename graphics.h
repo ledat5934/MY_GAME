@@ -116,7 +116,6 @@ struct Graphics {
     {
         Mix_Quit();
         IMG_Quit();
-
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();

@@ -104,6 +104,7 @@ struct logic_game
         }
         render_clue();
         graphic->presentScene();
+        SDL_DestroyTexture(helloText);
     }
     void render_clue()
     {
@@ -111,7 +112,9 @@ struct logic_game
         {
             if(character->x+character->cam>=clues.first.first-18&&character->x+character->cam<=clues.first.first+18&&character->y==clues.first.second)
             {
-                graphic->renderTexture(graphic->renderText(clues.second.c_str(),font,color),100,570);
+                SDL_Texture* tempTexture = graphic->renderText(clues.second.c_str(),font,color);
+                graphic->renderTexture(tempTexture,100,570);
+                SDL_DestroyTexture(tempTexture);
             }
         }
     }
@@ -347,7 +350,6 @@ struct logic_game
             }
             if(is_playing)
             {
-                cout<<character->x+character->cam<<" "<<character->y<<endl;
                 maps->moved_spike->update();
                 character->move_up=character->can_jump=true;
                 character->check_move();

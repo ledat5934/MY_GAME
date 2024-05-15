@@ -69,6 +69,7 @@ struct Minimap
     }
     void draw_minimap()
     {
+
         SDL_SetRenderDrawColor(graphic->renderer,0,0,0,255);
         SDL_RenderFillRect(graphic->renderer,&minimap);
         for(auto &d:spike)
