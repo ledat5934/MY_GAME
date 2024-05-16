@@ -8,7 +8,8 @@ Các chức năng của game:
 +)âm thanh: nhạc nền, nhạc khi nhảy, hiệu ứng âm thanh khi nhân vật chết;
 +)đồ hoạ: background, xây map,...;
 +)render Text
-+)xử lý sự kiện bàn phím; 
++)xử lý sự kiện bàn phím;
++)minimap: cập nhật theo chuyển động của nhân vật và các vật thể xuất hiện trên màn hình
 +)nhiều trò troll;
 +)game có kịch bản;
 =>Tự nhận điểm: 9
