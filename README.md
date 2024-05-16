@@ -11,3 +11,4 @@ Các chức năng của game:
 +)xử lý sự kiện bàn phím; 
 +)nhiều trò troll;
 +)game có kịch bản;
+=>Tự nhận điểm: 9
