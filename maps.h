@@ -18,7 +18,7 @@ struct object
         texture=tex1;x=x1;y=y1;
     }
 };
-vector<object>v;
+vector<object>grounded;
 struct game_map
 {
     Image *images;
@@ -45,7 +45,7 @@ struct game_map
         {
             graphic->renderTexture(tex,i,j);
             object o(tex,i,j);
-            v.push_back(o);
+            grounded.push_back(o);
         }
         if(tex!=images->spike&&tex!=images->door&&tex!=images->sign&&tex!=images->water&&tex!=images->underwater)
             {can_stand.insert({j,i});}

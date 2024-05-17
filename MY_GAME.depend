@@ -13,7 +13,7 @@
 	"minimap.h"
 	"menu.h"
 
-1715703531 c:\users\admin\documents\codeblockproject\my_game\defs.h
+1715872274 c:\users\admin\documents\codeblockproject\my_game\defs.h
 	<bits/stdc++.h>
 
 1715753818 c:\users\admin\documents\codeblockproject\my_game\graphics.h
@@ -29,7 +29,7 @@
 	"defs.h"
 	"graphics.h"
 
-1715703817 c:\users\admin\documents\codeblockproject\my_game\maps.h
+1715872322 c:\users\admin\documents\codeblockproject\my_game\maps.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
@@ -55,7 +55,7 @@
 
 1712820057 c:\users\admin\documents\codeblockproject\my_game\save_point.h
 
-1715755761 c:\users\admin\documents\codeblockproject\my_game\minimap.h
+1715872450 c:\users\admin\documents\codeblockproject\my_game\minimap.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -68,7 +68,7 @@
 
 1714446482 c:\users\admin\documents\codeblockproject\my_game\trap.h
 
-1715757987 c:\users\admin\documents\codeblockproject\my_game\logic_game.h
+1715874070 c:\users\admin\documents\codeblockproject\my_game\logic_game.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>

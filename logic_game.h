@@ -84,7 +84,7 @@ struct logic_game
                 graphic->renderTexture(images->spike,objects.first-character->cam,objects.second);
             }
         }
-        for (auto &objects:v)
+        for (auto &objects:grounded)
         {
             if (objects.x >= character->cam-18 && objects.x <= SCREEN_WIDTH + character->cam)
             {
@@ -208,9 +208,9 @@ struct logic_game
         if(character->x+character->cam>630&&trap_started[0]&&!trap_ended[0])
         {
             Uint32 current_time=SDL_GetTicks();
-            double xx=(current_time-start_time)/12;
-            if(xx>22){xx=22;trap_started[0]=false;trap_ended[0]=true;}
-            maps->add(images->spike,702,432+22-xx);
+            double time_caculater=(current_time-start_time)/12;
+            if(time_caculater>22){time_caculater=22;trap_started[0]=false;trap_ended[0]=true;}
+            maps->add(images->spike,702,432+22-time_caculater);
             maps->add(images->ground_top,702,450);
             maps->add(images->ground_inside,702,468);
             if(trap_ended[0])
@@ -222,9 +222,9 @@ struct logic_game
         {
             trap_started[1]=true;
             trap_ended[1]=true;
-            if(v.back().x==maps->random)
+            if(grounded.back().x==maps->random)
             {
-                v.pop_back();
+                grounded.pop_back();
             }
             can_stand.erase(can_stand.find({27*pile_size,maps->random}));
         }
@@ -306,7 +306,7 @@ struct logic_game
         character->count_die++;
         character->x=6;character->y=432;
         character->cam=0;
-        v.clear();
+        grounded.clear();
         can_stand.clear();
         danger.clear();
         spike.clear();
